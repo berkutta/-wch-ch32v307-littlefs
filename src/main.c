@@ -1,5 +1,7 @@
 #include "debug.h"
 
+#include "storage.h"
+
 int main(void)
 {
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
@@ -9,5 +11,7 @@ int main(void)
 
     printf("SystemClk:%d\r\n", SystemCoreClock);
 
+    storage_init();
+    
     while(1) {};
 }

@@ -8,6 +8,8 @@ OPENOCD_ROOT   := "/opt/wch/mounriver-studio-toolchain-openocd/bin/"
 # Path to the WCH vendor codebase, make sure to update the submodule to get the code
 VENDOR_ROOT = ./vendor/
 
+LITTLEFS_ROOT = ./src/lib/littlefs/
+
 ###############################################################################
 
 # Project specific
@@ -27,8 +29,13 @@ SIZE = $(TOOLCHAIN_ROOT)riscv-none-embed-size
 # Project sources
 SRC_FILES  = $(wildcard $(SRC_DIR)*.c) 
 
+SRC_FILES += $(LITTLEFS_ROOT)lfs.c
+SRC_FILES += $(LITTLEFS_ROOT)lfs_util.c
+
 # Project includes
 INCLUDES  = -I$(SRC_DIR)
+
+INCLUDES += -I$(LITTLEFS_ROOT)
 
 # Vendor sources:
 ASM_FILES += $(STARTUP_DIR)startup_ch32v30x_D8C.S
